@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendencias en Ingeniería de Software</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/rd-gg-dl/AJfQ9KSXBmoZxSSA73qiI1BhNyUCe8DXp2TkYAElotoeqIxeygkWk2bis3ojgevoYuCKYUCUDv_zXVzRucMQFoeYthWDxk1sMeYZv_61jC8CXOje-J7gL97yawnJ6-gNk91zlLUiAoFt4lICiZwv35Srgf2o0Q-NIaZFN_bewHijs9GgAlm_q1yFYA67uB_ybx6UgElI9VSNdo0uDIH4Vl86Fov92LXBofHnvGqtx20pcxVuDgLV22s119Vj_OcHH5bry9ByYt0ARwNr-OtC8BHgEVijEpLpaSnnfmr68LaSAXxVu9lZi7Gd_xeVfVCdv449axMUrTQzyqNYUCy30GOTkOWKxI-BZ-K8mfo-nmPtdRFot5ocMvUkIWBxqpubw0VAFVq3vsLBmt3IcOgbm-kK8l36a8DpJGvSVK8cne19I8QEFCipXaIgwOOBqX5r6-rHjhhBYeVYGpkmwAZlE8yo8165nZbre39hWyFv5ruuNYwoF8hxZSNw1cXwvwvB-601ydwERFd6AIT8_DO6seunG4fWEbByc-7-ML66a6CfFHfbl0DfuelvOfvppJ0V637tZWeieTsUXAMKsmW4rFDQ6oFxc8cTLAZMgvYYPbx5l8ZSBue6mIBb8qUCt_0j1Qx5l1mhnx54GkRCFhUIAQuKl2jHL4llFYtOQQtO6IEAQtf8fvfmVtazDdEe1F3kuo96jUcqs9tI3D_X04lkFIzmM5G0X_K7df48FtzaKoeA3fQeJH41ORSDX2foJsP9GYS873uK0Uxn8NVmgvF3FgPoS94bnKZ5T0IJAukQfbR8MbHxB1AQ-NAy3731E8h9dKBunliPo-Bdnil_hPWFwJVcwFsT1sRvNPxsNzMfhGtqFOWdurGe5wvOJRHzoCBOCoJLpO2hCPR3jLuu0bpxX79NH-hzO4Yxsti34jDootlJtny-2nbFEwI_OQrv97ExOhdYZJXP62cd4CfKMdV967UrhLyqp8prQeHoM7P5kvc2Lq-y6SrYV1LCQvOgpfjOZGv8eAtwIJBkscf7pUgYf6EP3NS8nsh_GvG1geu0YADfcaN8JAO2SouE-F2FsvQMHom9QYiq6PgdjAgwHLbMqFquJ4v7codzE7mk1zJ4oGEKej5mlZKi=s1024" type="image/x-icon">
+</head>
+
+<body>
+    <button class="game-trigger" id="gameToggle" aria-label="Jugar trivia"><i class="bi bi-controller"></i></button>
+
+    <!-- Juego Interactivo -->
+    <div class="game-overlay" id="gameOverlay"></div>
+    <div class="game-container" id="gameContainer">
+        <div class="game-header">
+            <h2>Trivia: Historia del Software</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="game-score">
+            <div class="score-item">
+                <div class="score-number" id="currentScore">0</div>
+                <div class="score-label">Puntos</div>
+            </div>
+            <div class="score-item">
+                <div class="score-number" id="questionNumber">1</div>
+                <div class="score-label">Pregunta</div>
+            </div>
+            <div class="score-item">
+                <div class="score-number" id="streak">0</div>
+                <div class="score-label">Racha</div>
+            </div>
+        </div>
+
+        <div class="question-container" id="questionContainer">
+            <div class="question" id="questionText"></div>
+            <div class="answers" id="answersContainer"></div>
+        </div>
+
+        <div class="game-results" id="gameResults">
+            <div class="final-score" id="finalScore"></div>
+            <div class="score-message" id="scoreMessage"></div>
+        </div>
+
+        <div class="game-controls">
+            <button class="game-btn btn-secondary" id="closeGame">Cerrar</button>
+            <button class="game-btn btn-primary" id="nextQuestion" style="display: none;">Siguiente</button>
+            <button class="game-btn btn-primary" id="playAgain" style="display: none;">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <div class="floating-icons" id="floatingIcons"></div>
+
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <header>
+        <h1>Tendencias en la Ingeniería del Software</h1>
+        <p>Desde sus inicios hasta la actualidad</p>
+    </header>
+
+    <main class="timeline">
+        <div class="timeline-item left">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Univac_I_at_CHM.agr.jpg/1024px-Univac_I_at_CHM.agr.jpg"
+                    alt="Computadora UNIVAC-I de los años 50" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">1950s</div>
+                    <h2>Primeros pasos</h2>
+                    <p>Surgen las primeras computadoras electrónicas. La programación se hacía en lenguaje máquina y
+                        ensamblador. Aunque rudimentarios, estos avances sentaron las bases de la informática y del
+                        concepto de software.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">UNIVAC</span>
+                        <span class="tech-tag">Lenguaje Máquina</span>
+                        <span class="tech-tag">Ensamblador</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="card">
+                <img src="https://substackcdn.com/image/fetch/$s_!jVx1!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F6ee2471a-01e4-4f49-a840-7b0fd1677217_2048x1536.jpeg"
+                    alt="Sistema IBM 360 de los años 60" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">1960s</div>
+                    <h2>Lenguajes de alto nivel y Crisis del Software</h2>
+                    <p><strong>FORTRAN</strong>, <strong>COBOL</strong> y <strong>ALGOL</strong> impulsan el desarrollo
+                        de software. Surge la "crisis del software", al evidenciar fallos en proyectos grandes y
+                        costosos. Se hace evidente la necesidad de metodologías más formales.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">FORTRAN</span>
+                        <span class="tech-tag">COBOL</span>
+                        <span class="tech-tag">ALGOL</span>
+                        <span class="tech-tag">IBM System/360</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="card">
+                <img src="https://www.obsoletepc.com/computers/ibm/mainframe/ibm360-75.jpg"
+                    alt="Mainframe IBM 360-40" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">1970s</div>
+                    <h2>Nacimiento de la Ingeniería de Software</h2>
+                    <p>Se introduce el <strong>Modelo en Cascada</strong> (Royce, 1970). Lenguajes como
+                        <strong>C</strong> (1972) marcan un antes y un después. Se consolida la noción de ciclo de vida
+                        del software y de procesos organizados.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Modelo Cascada</span>
+                        <span class="tech-tag">Lenguaje C</span>
+                        <span class="tech-tag">UNIX</span>
+                        <span class="tech-tag">Pascal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="card">
+                <img src="https://msmk.university/wp-content/uploads/2025/05/programacionc.webp"
+                    alt="Logo del lenguaje C++" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">1980s</div>
+                    <h2>Orientación a Objetos</h2>
+                    <p>Con <strong>C++</strong> y <strong>Smalltalk</strong> surge la Programación Orientada a Objetos
+                        (POO), que introduce modularidad y reutilización. También aparecen interfaces gráficas,
+                        acercando la informática a usuarios no técnicos.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Smalltalk</span>
+                        <span class="tech-tag">POO</span>
+                        <span class="tech-tag">GUI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/rd-gg-dl/AJfQ9KTpxdbuXWtBgubQnZcoKMmEOcCBlroMsi8rJmKMM6RSmGWNum3u5vOe1vTa8_i-CgYNFxWsk42cmPws3F1GayssgKmw7TrObfbKygvRyjwkWhBmysC2S4tgOBzI4eGeiYHel7AO12_C12xfAdGd_u5HJ_ZhtefM0u13BPonmUeV5UoVFSTu8JRX0kExKLxdZMwzvul8Eqt9IDw3xckjEg3da0i_ishqk2kTNQpjrvmZSRUUwVp-oaRPpX7Ljt-xOs8u2sYBRNubkF509J4gbFHANcwrMNYXwRKm-NsNugjmoCKeKYH0jDTF7DMAR7QH2v3crZ7Qqi_IojHUaWrO5xuBsPgfWhkC1d1tdr7LRR64W2bAt3NkmrmPsPwZ8-a8ZYn9lLIsv9CmHqQNJOP1RlarAAlXkordyiWEHJMRZuflvX_cGnbg5gRjHZSX73xPBAgwZr6ZNRLZXnFFP33tMq8_t5T-8Sx7kRLPMUjl1j7Am3oVtJEKKT7_kuM3hp2qKwxYLWGXyBXwS7tOaBkivfFGorjRArvWUocJYeDwHUnsKKXCuNI_GeKdY1oWToDdGmwGwo_6vEiToa4UAGWz9Dmflbo9EqDAL4bBnnvr7ATRlXM5UTBwFUMr4p2EqSssMPxS1HYEkxjQ3KF6cLU09-vFEOl4Xpm3Fc4-3iwYHJWVRRxs1NnKH6fdmn2dfGJqq2RHdZyE8XPOwSLF7ZlGhqDjzQLwgSfiiksiBWu_s_l_jLQv2WVtj8Cy5vQwdu3Hrojuw9gSoXjNDmnC9J481sDrdWGvtaL9hadK6uTU-QPnA0VZTz4xBwuiNbUi0DoBgJ6NtWR_j-qGZ6lTM9TRoLqRISrf7UwbRvhSuu0LpLoiVX14hH3RKPN2wxBIWqxJi7u_0wRGjPAsXTPi_Rrs1P1jogIL2gdPjb_EcsrX2n7KOenCdPWfmMmZLCpAddI0s0fBuNiT0rmTT9qx47jiJ6i-i7ByOdNC3uAKGZGD9xyXTvXLVH0BKC9vuPamyVIL_7wXzKgM7PcUxHZyDenee1MbYkN-mAMvSIHtMbrHHr1CNFQMIFDSYnaxpcXwR4zSoF_2RhYhj78RAQ21wKWaVR5OX9eHhInJFELZ5gz2NcRaPXGCVg5ewCfxQSgm5N-E=s1024"
+                    alt="Mapa visual de Internet" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">1990s</div>
+                    <h2>Globalización y la Web</h2>
+                    <p><strong>Internet</strong> cambia la forma de trabajar. Surgen lenguajes como
+                        <strong>Java</strong>, <strong>PHP</strong> y <strong>JavaScript</strong> (1995). Se impulsa el
+                        software distribuido y comienzan a aparecer nuevas prácticas frente al modelo en cascada.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">World Wide Web</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="card">
+                <img src="https://donetonic.com/wp-content/uploads/2022/10/Procesos-SCRUM-1024x575.png"
+                    alt="Diagrama del proceso Scrum" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">2000s</div>
+                    <h2>Metodologías Ágiles y Software Libre</h2>
+                    <p>El <strong>Manifiesto Ágil</strong> (2001) revoluciona el desarrollo con <strong>Scrum</strong> y
+                        <strong>XP</strong>. El software libre (Linux, Apache, MySQL) se expande, generando comunidades
+                        activas e impulsando la colaboración global.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Scrum</span>
+                        <span class="tech-tag">XP</span>
+                        <span class="tech-tag">Linux</span>
+                        <span class="tech-tag">Open Source</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="card">
+                <img src="https://bdrinformatica.com/web/image/108339-f418495d/DALL%C2%B7E%202024-01-24%2021.24.16%20-%20A%20conceptual%20illustration%20of%20cloud%20computing%20showing%20a%20network%20of%20servers%20and%20devices%20connected%20through%20a%20stylized%20cloud.%20The%20image%20should%20depict%20a%20va.png?access_token=bd552575-ccd6-43dd-b95d-de93d9121f27"
+                    alt="Icono de computación en la nube" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">2010s</div>
+                    <h2>Movilidad, Cloud y DevOps</h2>
+                    <p>Las <strong>apps móviles</strong> dominan el mercado. El <strong>Cloud Computing</strong> (AWS,
+                        Azure, Google Cloud) transforma la infraestructura. <strong>DevOps</strong> automatiza
+                        despliegues e integra desarrollo con operaciones.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">iOS/Android</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">DevOps</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="card">
+                <img src="https://lh3.googleusercontent.com/rd-gg-dl/AJfQ9KQeAxf86ag5I-xOQi1mBAP8npBA3tXtGyQ7_AKomirc7_FSYhrQgtKJ9k3K3eHUUOmmg4gcaso0ZU_BkH3EyHF2lAAThEPtanKDpcGZdusghJGcdzKO_r1dESA5Len7uL8sT-DWqyizMq7EZyyoQMu2c6D9NcJik0URwLPtxl-d26l_9aRDWD55CQSFEbif4G9w1ZRPWHw0b4zLUk6ngP5Pod9rtF0HW3fKpsqP2u7aoVLbe9HRHTQtPa9W18t2Qr-MafoamvUgCC3gk9din2mWLkuJiJ53WRy-rQ1JiPZDAx7n9-nCyzL3zYu5RJemDOcIImxpGYEhfT8Tqt_XdzqVqB4mA-mot4wjCWaAWH18RK0i8Hcz9xl8nsz9faQqZhMxW4Ops-8O0jv92OGGFyHrTwg-WMvICg9VH-14LLL8g3u59YnRBbJIO89YlWUUwdrmQgSiKkTVxGcGTzuVj_CXOHp5qKif_cnUEROBgvJOYXWyRTqP48hR_W-FkrBM06PKWoWZKykQ-pMWffKqWgdZAbdR0dDz3SagUxVjJADsWSwv8iS_KiGCSyGF7CJI638HSqdKUD64Ttd5OQHxC9syXokPmDgWG48qDs2Aut1MqPksbSCnZ7hPGHUu0XtEDUE8_gLV__nQbWik4tCVZ7me7y3L6Tpmt-M3IxDOccN3jK3d8JsIPu_fwQAiQwo_OO7LAmldnHT8m4ECaCn26tL8f4CXbhR27NiQlt_9CguEC4paXWHAEYpKrrCrl0IzPEHz7ezm1F1KuTHfeH5y4gGYj4S_tGo9OCaiwSsm0xTo56w9X_YM8s3h16NPsldHzxR06EL_HzTYdbSLZXOszUd0pZSZ0UcUkT6KijAI2sQR6bVuznSZcAPP_D91srF9ZELWL-rMJhZDniTkOrxx_UuxPJTPDu3OP98IrIqo7cU1mbPk6qKwr03CgFtUcj67uF4ndHq2Gq74U9t6vLNCp2AG6bNylvEFeNjJJg0XkKPi5M6kU1984E9y-3lhSRnJ6K4Uhmtj_Zqfb-9aGOuXBlSxZ-ow_shJHq_e4k5aOZCDNWkBggRumkLAuhkUikV9pFevMmXhB50hoVtkTGfDP0lYWJdBJu4B85bzI07fXTMzsAcsfsCcO6CCLD4kicK2=s1024"
+                    alt="Concepto visual de Inteligencia Artificial" loading="lazy" class="zoomable">
+                <div class="card-content">
+                    <div class="decade-badge">2020s</div>
+                    <h2>Inteligencia Artificial y Microservicios</h2>
+                    <p>La <strong>IA</strong> y el <strong>Machine Learning</strong> se integran en casi todo el
+                        software moderno. Los <strong>microservicios</strong> y <strong>serverless</strong> dominan la
+                        arquitectura. La ciberseguridad se convierte en eje central de la industria.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">Microservicios</span>
+                        <span class="tech-tag">Serverless</span>
+                        <span class="tech-tag">Kubernetes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Presentación académica – Evolución de la Ingeniería del Software © 2025</p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba"><i class="bi bi-arrow-up-circle-fill"></i></button>
+    <!-- Modal para zoom de imagen -->
+    <div id="imgZoomModal" class="img-zoom-modal">
+        <span class="img-zoom-close" id="imgZoomClose">&times;</span>
+        <img class="img-zoom-content" id="imgZoomContent" src="" alt="Zoom imagen">
+        <div id="imgZoomCaption" class="img-zoom-caption"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
